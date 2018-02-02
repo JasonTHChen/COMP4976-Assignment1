@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmycWebSite", "LmycWebSite\LmycWebSite.csproj", "{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LmycWebSite.Tests", "LmycWebSite.Tests\LmycWebSite.Tests.csproj", "{F7F44C83-BA72-421F-B82B-1C100297B83A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F44C83-BA72-421F-B82B-1C100297B83A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F44C83-BA72-421F-B82B-1C100297B83A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F44C83-BA72-421F-B82B-1C100297B83A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F44C83-BA72-421F-B82B-1C100297B83A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1012CF3B-EC03-4FE1-A581-69E9A00814BF}
+	EndGlobalSection
+EndGlobal
