@@ -11,17 +11,23 @@ namespace LmycDataLib.Models.BoatClub
     {
         public int BoatId { get; set; }
 
+        [Required]
         [Display(Name = "Boat Name")]
         public string BoatName { get; set; }
         public byte[] Picture { get; set; }
 
+        [Required]
         [Display(Name = "Length In Feet")]
         public double LengthInFeet { get; set; }
         public string Make { get; set; }
+        [Required]
         public DateTime Year { get; set; }
 
-        [Display(Name = "Record Creation Date")]
-        public DateTime RecordCreationDate { get; set; }
+        [Required]
+        [ScaffoldColumn(false)]
+        [DataType(DataType.Date)]
+        [Display(Name = "Creation Date")]
+        public DateTime CreationDate { get; set; }
 
         [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
