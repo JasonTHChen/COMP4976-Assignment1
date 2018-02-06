@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LymcDataLib.Models
+namespace LmycDataLib.Models.BoatClub
 {
     public class Boat
     {
