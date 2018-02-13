@@ -1,5 +1,5 @@
-﻿enable-migrations -ContextTypeName ApplicationContext -MigrationsDirectory Migrations\ClientMigrations
+﻿enable-migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory Migrations\ClientMigrations
 
-add-migration -ConfigurationTypeName CodeFirstInc.Migrations.ClientMigrations.Configuration “InitialCreate”
+add-migration -ProjectName LmycWebSite -ConfigurationTypeName LymcWebSite.Migrations.ClientMigrations.Configuration “InitialCreate”
 
-update-database -ConfigurationTypeName CodeFirstInc.Migrations.ClientMigrations.Configuration
+update-database -ProjectName LmycWebSite -ConfigurationTypeName LymcWebSite.Migrations.ClientMigrations.Configuration

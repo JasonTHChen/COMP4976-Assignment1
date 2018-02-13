@@ -50,7 +50,7 @@ namespace LmycWebSite.Models
     {
         [Required]
         [Display(Name = "Username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,7 +64,8 @@ namespace LmycWebSite.Models
     public class RegisterViewModel
     {
         [Required]
-        public string Username { get; set; }
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
@@ -90,16 +91,18 @@ namespace LmycWebSite.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Display(Name = "Address Street")]
         [Required]
         public string Street { get; set; }
-
+         
         [Required]
         public string City { get; set; }
 
         [Required]
         public string Province { get; set; }
 
-        [RegularExpression(@"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Invalid Postal Code")]
+        [Display(Name = "Postal Code")]
+        [RegularExpression(@"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]\s?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Invalid Postal Code")]
         public string PostalCode { get; set; }
 
         [Required]
