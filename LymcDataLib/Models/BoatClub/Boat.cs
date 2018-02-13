@@ -31,6 +31,7 @@ namespace LmycDataLib.Models.BoatClub
 
         [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
