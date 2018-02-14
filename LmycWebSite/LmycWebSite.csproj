@@ -196,11 +196,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ClientMigrations\201802100119130_InitialCreate.cs" />
-    <Compile Include="Migrations\ClientMigrations\201802100119130_InitialCreate.Designer.cs">
-      <DependentUpon>201802100119130_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\BoatMigrations\201802140852024_InitialCreate.cs" />
+    <Compile Include="Migrations\BoatMigrations\201802140852024_InitialCreate.Designer.cs">
+      <DependentUpon>201802140852024_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ClientMigrations\Configuration.cs" />
+    <Compile Include="Migrations\BoatMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DummyData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -276,11 +276,6 @@
     <Content Include="Views\Boats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ClientMigrations\201802100119130_InitialCreate.resx">
-      <DependentUpon>201802100119130_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
@@ -299,7 +294,11 @@
       <Name>LymcDataLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\BoatMigrations\201802140852024_InitialCreate.resx">
+      <DependentUpon>201802140852024_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
