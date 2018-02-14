@@ -110,11 +110,13 @@ namespace LmycWebSite.Models
 
         [Required]
         [Display(Name = "Mobile Number")]
+        [RegularExpression(@"\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*")]
         public string MobileNumber { get; set; }
 
         [Required]
         [Display(Name = "Sailing Experience")]
-        public string SailingExperience { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
+        public double SailingExperience { get; set; }
     }
 
     public class ResetPasswordViewModel

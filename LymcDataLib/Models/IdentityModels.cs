@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using LmycDataLib.Models.BoatClub;
@@ -18,7 +19,9 @@ namespace LmycDataLib.Models
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public string MobileNumber { get; set; }
-        public string SailingExperience { get; set; }
+        public double SailingExperience { get; set; }
+
+        public List<Boat> Boats { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

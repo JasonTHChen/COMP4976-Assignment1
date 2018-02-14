@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace LmycDataLib.Models.BoatClub
         [Display(Name = "Length In Feet")]
         public double LengthInFeet { get; set; }
         public string Make { get; set; }
+
+        [DataType(DataType.Date)]
         [Required]
         public DateTime Year { get; set; }
 
@@ -30,6 +33,7 @@ namespace LmycDataLib.Models.BoatClub
         public DateTime CreationDate { get; set; }
 
         [Display(Name = "Created By")]
+        [ForeignKey("ApplicationUser")]
         public string CreatedBy { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
