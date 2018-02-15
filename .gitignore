@@ -261,4 +261,4 @@ __pycache__/
 *.pyc
 
 # LymcDataLib Migration Sample
-LymcDataLib/Migrations/
+LmycDataLib/Migrations/
