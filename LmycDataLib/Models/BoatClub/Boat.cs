@@ -22,20 +22,20 @@ namespace LmycDataLib.Models.BoatClub
         public double LengthInFeet { get; set; }
         public string Make { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
-        public DateTime Year { get; set; }
+        public int Year { get; set; }
 
         [Required]
         [ScaffoldColumn(false)]
         [DataType(DataType.Date)]
         [Display(Name = "Creation Date")]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 
+        [ForeignKey("User")]
+        [ScaffoldColumn(false)]
         [Display(Name = "Created By")]
-        [ForeignKey("ApplicationUser")]
         public string CreatedBy { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

@@ -99,6 +99,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LmycDataLib\LmycDataLib.csproj">
+      <Project>{8c929b3c-aa88-4358-8b69-383aff50497a}</Project>
+      <Name>LmycDataLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LmycWebSite\LmycWebSite.csproj">
       <Project>{DED5E697-2BE6-4D75-A0A2-C0019D6DC5B9}</Project>
       <Name>LmycWebSite</Name>

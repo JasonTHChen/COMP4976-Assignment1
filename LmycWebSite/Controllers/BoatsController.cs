@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LmycDataLib.Models;
 using LmycDataLib.Models.BoatClub;
+using Microsoft.AspNet.Identity;
 
 namespace LmycWebSite.Controllers
 {
-    [Authorize]
     public class BoatsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Boats
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(db.Boats.ToList());
+            var boats = db.Boats.Include(b => b.User);
+            return View(await boats.ToListAsync());
         }
 
         // GET: Boats/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = db.Boats.Find(id);
+            Boat boat = await db.Boats.FindAsync(id);
             if (boat == null)
             {
                 return HttpNotFound();
@@ -40,6 +42,7 @@ namespace LmycWebSite.Controllers
         // GET: Boats/Create
         public ActionResult Create()
         {
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -48,30 +51,33 @@ namespace LmycWebSite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
+        public async Task<ActionResult> Create([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
         {
             if (ModelState.IsValid)
             {
+                boat.CreatedBy = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.Boats.Add(boat);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
             return View(boat);
         }
 
         // GET: Boats/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = db.Boats.Find(id);
+            Boat boat = await db.Boats.FindAsync(id);
             if (boat == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
             return View(boat);
         }
 
@@ -80,25 +86,26 @@ namespace LmycWebSite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
+        public async Task<ActionResult> Edit([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(boat).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
             return View(boat);
         }
 
         // GET: Boats/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = db.Boats.Find(id);
+            Boat boat = await db.Boats.FindAsync(id);
             if (boat == null)
             {
                 return HttpNotFound();
@@ -109,11 +116,11 @@ namespace LmycWebSite.Controllers
         // POST: Boats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Boat boat = db.Boats.Find(id);
+            Boat boat = await db.Boats.FindAsync(id);
             db.Boats.Remove(boat);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

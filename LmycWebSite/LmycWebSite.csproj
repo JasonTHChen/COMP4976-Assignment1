@@ -196,11 +196,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\BoatMigrations\201802140852024_InitialCreate.cs" />
-    <Compile Include="Migrations\BoatMigrations\201802140852024_InitialCreate.Designer.cs">
-      <DependentUpon>201802140852024_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BoatMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DummyData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -289,15 +284,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LymcDataLib\LymcDataLib.csproj">
-      <Project>{052be8d2-3b30-4e86-a8a3-a4ea497b9c59}</Project>
-      <Name>LymcDataLib</Name>
-    </ProjectReference>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\BoatMigrations\201802140852024_InitialCreate.resx">
-      <DependentUpon>201802140852024_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\LmycDataLib\LmycDataLib.csproj">
+      <Project>{8c929b3c-aa88-4358-8b69-383aff50497a}</Project>
+      <Name>LmycDataLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
