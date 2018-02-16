@@ -8,125 +8,114 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LmycDataLib.Models;
-using LmycDataLib.Models.BoatClub;
 using Microsoft.AspNet.Identity;
 
-namespace LmycWebSite.Controllers
+namespace LmycWebSite.Models
 {
-    [Authorize]
-    public class BoatsController : Controller
+    [Authorize(Roles = "Admin")]
+    public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Boats
+        // GET: Users
         public async Task<ActionResult> Index()
         {
-            var boats = db.Boats.Include(b => b.User);
-            return View(await boats.ToListAsync());
+            return View(await db.Users.ToListAsync());
         }
 
-        // GET: Boats/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Users/Details/5
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = await db.Boats.Include(b => b.User).FirstOrDefaultAsync(b => b.BoatId == id);
-            if (boat == null)
+            ApplicationUser applicationUser = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(boat);
+            return View(applicationUser);
         }
 
-        // GET: Boats/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
-        // POST: Boats/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Create([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
+        public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,Street,City,Province,PostalCode,Country,MobileNumber,SailingExperience,Email,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                boat.CreatedBy = System.Web.HttpContext.Current.User.Identity.GetUserId();
-                db.Boats.Add(boat);
+                db.Users.Add(applicationUser);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
-            return View(boat);
+            return View(applicationUser);
         }
 
-        // GET: Boats/Edit/5
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Users/Edit/5
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = await db.Boats.FindAsync(id);
-            if (boat == null)
+            ApplicationUser applicationUser = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
-            return View(boat);
+
+            return View(applicationUser);
         }
 
-        // POST: Boats/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Edit([Bind(Include = "BoatId,BoatName,Picture,LengthInFeet,Make,Year,CreationDate,CreatedBy")] Boat boat)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,Street,City,Province,PostalCode,Country,MobileNumber,SailingExperience,Email,PasswordHash,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(boat).State = EntityState.Modified;
+                db.Entry(applicationUser).State = EntityState.Modified;
+               
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
-            return View(boat);
+            return View(applicationUser);
         }
 
-        // GET: Boats/Delete/5
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Users/Delete/5
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Boat boat = await db.Boats.FindAsync(id);
-            if (boat == null)
+            ApplicationUser applicationUser = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (applicationUser == null)
             {
                 return HttpNotFound();
             }
-            return View(boat);
+            return View(applicationUser);
         }
 
-        // POST: Boats/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            Boat boat = await db.Boats.FindAsync(id);
-            db.Boats.Remove(boat);
+            ApplicationUser applicationUser = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            db.Users.Remove(applicationUser);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -15,7 +15,7 @@ namespace LmycDataLib.Models.BoatClub
         [Required]
         [Display(Name = "Boat Name")]
         public string BoatName { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
 
         [Required]
         [Display(Name = "Length In Feet")]
