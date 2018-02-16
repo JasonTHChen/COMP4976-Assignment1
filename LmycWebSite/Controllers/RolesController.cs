@@ -30,9 +30,19 @@ namespace LmycWebSite.Controllers
 
         // POST: Roles/Create
         [HttpPost]
-        public ActionResult Create(IdentityRole Role)
+        public ActionResult Create(IdentityRole role)
         {
-            db.Roles.Add(Role);
+            db.Roles.Add(role);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Roles/Delete
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            IdentityRole role = db.Roles.FirstOrDefault(r => r.Id == id);
+            db.Roles.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
