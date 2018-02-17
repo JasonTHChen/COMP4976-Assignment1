@@ -1,0 +1,35 @@
+﻿@model IEnumerable<LmycDataLib.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Edit";
+    var roleName = ViewBag.Role as string;
+}
+
+<h2>Edit @roleName</h2>
+<table class="table">
+    <tr>
+        <th>
+            Username
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.UserName)
+            </td>
+            <td>
+                @using (Html.BeginForm("Remove", "Roles", FormMethod.Post))
+                {
+                    @Html.Hidden("userId", user.Id)
+                    @Html.Hidden("roleName", roleName)
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Remove" class="btn btn-link" />
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

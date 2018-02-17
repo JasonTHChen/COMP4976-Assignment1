@@ -18,20 +18,24 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @using (Html.BeginForm("Delete", "Roles", FormMethod.Post))
-                {
-                    <div class="form-actions no-color">
-                        @Html.Hidden("id", item.Id)
-                        <input type="submit" value="Delete" class="btn btn-link" />
-                    </div>
-                }
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @using (Html.BeginForm("Delete", "Roles", FormMethod.Post))
+            {
+            <div class="form-actions no-color">
+                @Html.Hidden("id", item.Id)
+                <input type="submit" value="Delete" class="btn btn-link" />
+            </div>
+            }
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        </td>
+    </tr>
     }
 
 
