@@ -197,13 +197,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\BoatMigrations\201802172202208_InitialCreate.cs" />
-    <Compile Include="Migrations\BoatMigrations\201802172202208_InitialCreate.Designer.cs">
-      <DependentUpon>201802172202208_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\BoatMigrations\201802172331258_InitialCreate.cs" />
+    <Compile Include="Migrations\BoatMigrations\201802172331258_InitialCreate.Designer.cs">
+      <DependentUpon>201802172331258_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BoatMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DummyData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -306,8 +305,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\BoatMigrations\201802172202208_InitialCreate.resx">
-      <DependentUpon>201802172202208_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\BoatMigrations\201802172331258_InitialCreate.resx">
+      <DependentUpon>201802172331258_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

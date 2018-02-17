@@ -1,7 +1,6 @@
 namespace LmycWebSite.Migrations.BoatMigrations
 {
 	using LmycDataLib.Models;
-	using LmycWebSite.Models;
 	using Microsoft.AspNet.Identity;
 	using Microsoft.AspNet.Identity.EntityFramework;
 	using System;
@@ -21,6 +20,8 @@ namespace LmycWebSite.Migrations.BoatMigrations
 		{
 			SeedAdminUsers(context);
 			SeedMembers(context);
+
+            context.Boats.AddOrUpdate(b => b.BoatId, DummyData.GetBoats(context).ToArray());
 
 		}
 
