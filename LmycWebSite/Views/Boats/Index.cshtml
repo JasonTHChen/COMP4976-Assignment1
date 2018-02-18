@@ -1,71 +1,65 @@
 ﻿@model IEnumerable<LmycDataLib.Models.BoatClub.Boat>
-
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Boat";
 }
-
-<h2>Index</h2>
-
+<h2 class="tm-gold-text">@ViewBag.Title.</h2>
 <p>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Create New", "Create")
-    }
+	@if (User.IsInRole("Admin"))
+	{
+		@Html.ActionLink("Create New", "Create")
+	}
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BoatName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Picture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LengthInFeet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BoatName)
-            </td>
-            <td>
-                <a href="@Html.DisplayFor(modelItem => item.Picture)">Preview</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LengthInFeet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Make)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @if (User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.BoatId })<span> | </span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.BoatId })<span> | </span>
-                }
-
-                @Html.ActionLink("Details", "Details", new { id = item.BoatId })
-            </td>
-        </tr>
-    }
-
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.User.UserName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.BoatName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Picture)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.LengthInFeet)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Make)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Year)
+		</th>
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.User.UserName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.BoatName)
+			</td>
+			<td>
+				<a href="@Html.DisplayFor(modelItem => item.Picture)">Preview</a>
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.LengthInFeet)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Make)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Year)
+			</td>
+			<td>
+				@if (User.IsInRole("Admin"))
+				{
+					@Html.ActionLink("Edit", "Edit", new { id = item.BoatId })<span> | </span>
+					@Html.ActionLink("Delete", "Delete", new { id = item.BoatId })<span> | </span>
+				}
+				@Html.ActionLink("Details", "Details", new { id = item.BoatId })
+			</td>
+		</tr>
+	}
 </table>

@@ -5,7 +5,7 @@
     var roleId = ViewBag.RoleId as string;
 }
 
-<h2>Edit @roleName</h2>
+<h2 class="tm-gold-text">Edit @roleName</h2>
 @if (!roleName.Equals("Admin"))
 {
     @Html.AntiForgeryToken()
