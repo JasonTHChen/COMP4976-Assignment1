@@ -25,7 +25,10 @@
                     @*<li>@Html.ActionLink("About", "About", "Home")</li>*@
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Boats", "Index", "Boats")</li>
+                        if (User.IsInRole("Member") || User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Boats", "Index", "Boats")</li>
+                        }
 
                         if (User.IsInRole("Admin"))
                         {

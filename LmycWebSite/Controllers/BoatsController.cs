@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace LmycWebSite.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Member, Admin"]
     public class BoatsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
