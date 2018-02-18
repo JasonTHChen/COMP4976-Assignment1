@@ -1,10 +1,10 @@
 ﻿@model LmycDataLib.Models.BoatClub.Boat
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create New Boat";
 }
 
-<h2>Create</h2>
+<h2 class="tm-gold-text">@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Boat</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
