@@ -40,22 +40,21 @@ namespace LmycWebSite.Controllers
             }
         }
 
-        // GET: Roles
+        // GET: Roles/Index
         public ActionResult Index()
         {
-            var Roles = db.Roles.ToList();
-            return View(Roles);
+            return View(db.Roles.ToList());
         }
         
         // GET: Roles/Create
 		public ActionResult Create()
         {
-            var Role = new IdentityRole();
-            return View(Role);
+            return View();
         }
 
         // POST: Roles/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(IdentityRole role)
         {
             db.Roles.Add(role);
@@ -76,34 +75,87 @@ namespace LmycWebSite.Controllers
                 return HttpNotFound();
             }
             var users = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(id)).ToList();
-            ViewBag.Role = role.Name;
+
+            ViewBag.RoleName = role.Name;
+            ViewBag.RoleId = role.Id;
 
             return View(users);
         }
 
         // POST: Roles/Delete
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
         {
-            IdentityRole role = db.Roles.FirstOrDefault(r => r.Id == id);
-            db.Roles.Remove(role);
-            db.SaveChanges();
+            if (id != null)
+            {
+                IdentityRole role = db.Roles.FirstOrDefault(r => r.Id == id);
+                if (!role.Name.Equals("Admin") && role != null)
+                {
+                    db.Roles.Remove(role);
+                    db.SaveChanges();
+                }
+            }
+            
             return RedirectToAction("Index");
         }
 
         // POST: Roles/Remove
         [HttpPost]
-        public ActionResult Remove(string userId, string roleName)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Remove(string userId, string roleName)
         {
-            if (userId != null)
+            if (userId != null && roleName != null)
             {
-                Console.WriteLine(userId);
-                Console.WriteLine(roleName);
-                UserManager.RemoveFromRoles(userId, roleName);
-                return RedirectToAction("Index");
+                ApplicationUser user = db.Users.FirstOrDefault(u => u.Id == userId);
+                if (!user.UserName.Equals("a") && user != null)
+                {
+                    await UserManager.RemoveFromRoleAsync(userId, roleName);
+                    return RedirectToAction("Index");
+                }
             }
 
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        // GET: Roles/Add
+        public ActionResult Add(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            IdentityRole role = db.Roles.FirstOrDefault(r => r.Id == id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            var usersInRole = db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(id)).ToList();
+
+            ViewBag.RoleName = role.Name;
+            ViewBag.RoleId = role.Id;
+
+            var users = db.Users.ToList();
+
+            foreach (var u in usersInRole)
+            {
+                if (users.Contains(u))
+                {
+                    users.Remove(u);
+                }
+            }
+
+            return View(users);
+        }
+
+        // POST: Roles/Add
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(string userId, string roleName)
+        {
+            await UserManager.AddToRoleAsync(userId, roleName);
+            
+            return RedirectToAction("Index");
         }
     }
 }

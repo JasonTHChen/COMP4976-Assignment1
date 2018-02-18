@@ -110,7 +110,7 @@ namespace LmycWebSite.Models
 
         [Required]
         [Display(Name = "Mobile Number")]
-        [RegularExpression(@"\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*")]
+        [RegularExpression(@"\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*", ErrorMessage = "Invalid Mobile Number")]
         public string MobileNumber { get; set; }
 
         [Required]

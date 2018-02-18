@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LmycDataLib.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Add";
+    var roleName = ViewBag.RoleName as string;
+    var roleId = ViewBag.RoleId as string;
+}
+
+<h2>Add Users in @roleName Role</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.UserName)
+            </td>
+            <td>
+                @using (Html.BeginForm("Add", "Roles", FormMethod.Post))
+                {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("userId", user.Id)
+                @Html.Hidden("roleName", roleName)
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-link" />
+                </div>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Back to Edit", "Edit", new { id = roleId })
+

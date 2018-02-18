@@ -6,8 +6,9 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <p> Enter User Role Name:</p>
 
-    @Html.EditorFor(m => m.Name)
+    @Html.EditorFor(model => model.Name)
     <input type="submit" value="Create Role" />
 }

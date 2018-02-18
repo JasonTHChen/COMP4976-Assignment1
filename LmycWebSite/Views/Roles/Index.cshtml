@@ -6,9 +6,9 @@
 <h2>Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create") |
-    @Html.ActionLink("Users", "Index", "Users")
+    @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -16,29 +16,16 @@
         </th>
         <th></th>
     </tr>
-
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @using (Html.BeginForm("Delete", "Roles", FormMethod.Post))
-            {
-            <div class="form-actions no-color">
-                @Html.Hidden("id", item.Id)
-                <input type="submit" value="Delete" class="btn btn-link" />
-            </div>
-            }
-        </td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+        </tr>
     }
-
-
 </table>
 

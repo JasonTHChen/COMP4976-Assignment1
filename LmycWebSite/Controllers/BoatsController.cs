@@ -44,7 +44,7 @@ namespace LmycWebSite.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace LmycWebSite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "FirstName", boat.CreatedBy);
+            ViewBag.CreatedBy = new SelectList(db.Users, "Id", "UserName", boat.CreatedBy);
             return View(boat);
         }
 
