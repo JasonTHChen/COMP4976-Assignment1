@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\BoatMigrations\Configuration.cs" />
     <Compile Include="Models\BoatClub\Boat.cs" />
     <Compile Include="Models\BoatClub\DummyData.cs" />
     <Compile Include="Models\IdentityModels.cs" />
