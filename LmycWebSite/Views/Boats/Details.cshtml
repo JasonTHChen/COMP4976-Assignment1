@@ -1,0 +1,68 @@
+﻿@model LmycDataLib.Models.BoatClub.Boat
+
+@{
+    ViewBag.Title = "Boat Details";
+}
+
+<h2 class="tm-gold-text">@ViewBag.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoatName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoatName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthInFeet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LengthInFeet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BoatId })<span> | </span>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

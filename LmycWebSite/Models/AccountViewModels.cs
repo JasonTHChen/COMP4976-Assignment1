@@ -49,9 +49,8 @@ namespace LmycWebSite.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,10 @@ namespace LmycWebSite.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +82,41 @@ namespace LmycWebSite.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Address Street")]
+        [Required]
+        public string Street { get; set; }
+         
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string Province { get; set; }
+
+        [Display(Name = "Postal Code")]
+        [RegularExpression(@"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]\s?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Invalid Postal Code")]
+        public string PostalCode { get; set; }
+
+        [Required]
+        public string Country { get; set; }
+
+        [Required]
+        [Display(Name = "Mobile Number")]
+        [RegularExpression(@"\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*", ErrorMessage = "Invalid Mobile Number")]
+        public string MobileNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Sailing Experience")]
+        [Range(1, int.MaxValue, ErrorMessage = "Only positive number allowed")]
+        public double SailingExperience { get; set; }
     }
 
     public class ResetPasswordViewModel

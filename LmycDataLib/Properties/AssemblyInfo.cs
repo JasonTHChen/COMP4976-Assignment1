@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LymcDataLib")]
+[assembly: AssemblyTitle("LmycDataLib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LymcDataLib")]
+[assembly: AssemblyProduct("LmycDataLib")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("052be8d2-3b30-4e86-a8a3-a4ea497b9c59")]
+[assembly: Guid("8c929b3c-aa88-4358-8b69-383aff50497a")]
 
 // Version information for an assembly consists of the following four values:
 //
